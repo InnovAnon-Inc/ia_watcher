@@ -71,9 +71,9 @@ def event_handler(observer:Observer, src_path:Path,)->None:
 	_event_handler()
 
 	deps:List[str] = ['ia_clean', 'ia_git', 'ia_setup', 'ia_watcher',]
-	if (src_path.name not in deps):
+	if (src_path.resolve().name not in deps):
 		return
-	assert (src_path.name in deps)
+	assert (src_path.resolve().name in deps)
 	logger.info('bootstrap required')
 	observer.stop()
 
