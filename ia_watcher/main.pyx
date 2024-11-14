@@ -65,7 +65,7 @@ class EventHandler(PatternMatchingEventHandler):
 			return
 
 		logger.info('handling event: %s (%s)', src_path, event,)
-		event_handler(observer=self.observer, sec_path=src_path,)
+		event_handler(observer=self.observer, src_path=src_path,)
 
 def event_handler(observer:Observer, src_path:Path,)->None:
 	_event_handler()
