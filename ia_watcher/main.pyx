@@ -72,6 +72,7 @@ def event_handler(observer:Observer, src_path:Path,)->None:
 	deps:List[str] = ['ia_git', 'ia_setup',]
 	if (src_path.name not in deps):
 		return
+	assert (src_path.name in deps)
 	observer.stop()
 
 def _event_handler()->None:
