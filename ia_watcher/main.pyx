@@ -64,11 +64,15 @@ class EventHandler(PatternMatchingEventHandler):
 			return
 
 		logger.info('handling event: %s (%s)', src_path, event,)
-		event_handler(observer=self.observer,)
+		event_handler(observer=self.observer, sec_path=src_path,)
 
-def event_handler(observer:Observer,)->None:
+def event_handler(observer:Observer, src_path:Path,)->None:
 	_event_handler()
-	#observer.stop()
+
+	deps:List[str] = ['ia_git', 'ia_setup',]
+	if (src_path.name not in deps):
+		return
+	observer.stop()
 
 def _event_handler()->None:
 	logger.info('before update')
