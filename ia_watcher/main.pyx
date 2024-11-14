@@ -99,14 +99,18 @@ def observe(observer:Observer,)->None:
 
 import sys
 def reexec()->None:
-	os.execl(sys.argv[0], sys.argv,)
+	os.execle(sys.argv[0], sys.argv, os.environ,)
 
 #@pidfile()
 def main()->None:
 	path         :Path         = Path()
 	logger.info('watching: %s', path.resolve(),)
 
-	_event_handler() # run once jic
+	if bool(os.getenv('WATCHER_INIT', None):
+		logger.info(
+	else:
+		logger.info('first run')
+		_event_handler()
 
 	observer     :Observer     = Observer()
 	event_handler:EventHandler = EventHandler(observer=observer,)
@@ -114,6 +118,7 @@ def main()->None:
 	with observe(observer=observer,) as _:
 		loop(observer=observer,)
 	logger.info('terminating')
+	os.environ['WATCHER_INIT'] = 'True'
 	reexec()
 
 __author__:str = 'you.com' # NOQA
