@@ -58,7 +58,7 @@ class EventHandler(PatternMatchingEventHandler):
 			#logger.debug('ignore build (%s)', src_path,)
 			return
 
-		git_dir:Path = Path('git') # TODO ignore this fucking shit
+		git_dir:Path = Path('.git') # TODO ignore this fucking shit
 		if (git_dir in src_path.parents):
 			#logger.debug('ignore .git (%s)', src_path,)
 			return
