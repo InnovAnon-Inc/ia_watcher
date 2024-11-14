@@ -80,8 +80,6 @@ def event_handler(observer:Observer, src_path:Path,)->None:
 def _event_handler()->None:
 	logger.info('before update')
 
-	# TODO if bootstrap.sh exists, then do that
-	# TODO otherwise run ia_bootstrap:
 	clean_main()
 	git_main()
 	setup_main()
