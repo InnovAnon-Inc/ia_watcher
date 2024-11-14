@@ -73,6 +73,7 @@ def event_handler(observer:Observer, src_path:Path,)->None:
 	if (src_path.name not in deps):
 		return
 	assert (src_path.name in deps)
+	logger.info('bootstrap required')
 	observer.stop()
 
 def _event_handler()->None:
@@ -97,7 +98,7 @@ def observe(observer:Observer,)->None:
 	observer.join()
 
 #@pidfile()
-def main()->None: # noreturn
+def main()->None:
 	path         :Path         = Path()
 	logger.info('watching: %s', path,)
 
@@ -108,5 +109,6 @@ def main()->None: # noreturn
 	observer.schedule(event_handler, path, recursive=True,)
 	with observe(observer=observer,) as _:
 		loop(observer=observer,)
+	logger.info('terminating')
 
 __author__:str = 'you.com' # NOQA
