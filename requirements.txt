@@ -1,5 +1,6 @@
 ia_clean
 ia_git
+ia_pyinstaller
 ia_setup
 #rich
 structlog
