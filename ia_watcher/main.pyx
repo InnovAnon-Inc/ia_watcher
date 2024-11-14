@@ -97,6 +97,10 @@ def observe(observer:Observer,)->None:
 	observer.stop()
 	observer.join()
 
+import sys
+def reexec()->None:
+	os.execl(sys.argv[0], sys.argv,)
+
 #@pidfile()
 def main()->None:
 	path         :Path         = Path()
@@ -110,5 +114,6 @@ def main()->None:
 	with observe(observer=observer,) as _:
 		loop(observer=observer,)
 	logger.info('terminating')
+	reexec()
 
 __author__:str = 'you.com' # NOQA
