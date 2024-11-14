@@ -104,7 +104,7 @@ def reexec()->None:
 #@pidfile()
 def main()->None:
 	path         :Path         = Path()
-	logger.info('watching: %s', path,)
+	logger.info('watching: %s', path.resolve(),)
 
 	_event_handler() # run once jic
 
