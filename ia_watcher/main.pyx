@@ -106,8 +106,8 @@ def main()->None:
 	path         :Path         = Path()
 	logger.info('watching: %s', path.resolve(),)
 
-	if bool(os.getenv('WATCHER_INIT', None):
-		logger.info(
+	if bool(os.getenv('WATCHER_INIT', None)):
+		logger.info('re-run')
 	else:
 		logger.info('first run')
 		_event_handler()
