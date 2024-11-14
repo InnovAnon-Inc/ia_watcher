@@ -20,6 +20,7 @@ from watchdog.events     import FileClosedNoWriteEvent
 from watchdog.events     import FileOpenedEvent
 from watchdog.observers  import Observer
 
+from ia_clean.main       import main as clean_main
 from ia_git.main         import main as git_main
 from ia_setup.main       import main as setup_main
 
@@ -81,6 +82,7 @@ def _event_handler()->None:
 
 	# TODO if bootstrap.sh exists, then do that
 	# TODO otherwise run ia_bootstrap:
+	clean_main()
 	git_main()
 	setup_main()
 
