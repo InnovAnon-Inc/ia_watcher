@@ -85,7 +85,7 @@ def _event_handler()->None:
 	clean_main()
 	git_main()
 	setup_main()
-	pyinstaller_main()
+	#pyinstaller_main()
 	spydir_main()
 
 	logger.info('after update')
