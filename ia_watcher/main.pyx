@@ -24,7 +24,7 @@ from ia_clean.main       import main as clean_main
 from ia_git.main         import main as git_main
 from ia_pyinstaller.main import main as pyinstaller_main
 from ia_setup.main       import main as setup_main
-#from ia_spydir.main      import main as spydir_main
+from ia_spydir.main      import main as spydir_main
 
 logger = get_logger()
 
@@ -86,7 +86,7 @@ def _event_handler()->None:
 	git_main()
 	setup_main()
 	pyinstaller_main()
-	#spydir_main()
+	spydir_main()
 
 	logger.info('after update')
 
