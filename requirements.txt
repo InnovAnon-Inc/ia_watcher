@@ -2,7 +2,7 @@ ia_clean
 ia_git
 ia_pyinstaller
 ia_setup
-#ia_spydir
+ia_spydir
 #rich
 structlog
 watchdog
