@@ -111,6 +111,13 @@ def reexec()->None:
 def main()->None:
 	dotenv.load_dotenv()
 
+	do_clean      :bool = bool(os.getenv('WATCHER_CLEAN',       True))
+	do_git        :bool = bool(os.getenv('WATCHER_GIT',         True))
+	do_setup      :bool = bool(os.getenv('WATCHER_SETUP',       True))
+	do_pyinstaller:bool = bool(os.getenv('WATCHER_PYINSTALLER', True))
+	do_docker     :bool = bool(os.getenv('WATCHER_DOCKER',      True))
+	do_spydir     :bool = bool(os.getenv('WATCHER_SPYDIR',      True))
+
 	path         :Path         = Path()
 	logger.info('watching: %s', path.resolve(),)
 
@@ -118,14 +125,13 @@ def main()->None:
 		logger.info('re-run')
 	else:
 		logger.info('first run')
-		_event_handler()
-
-	do_clean      :bool = bool(os.getenv('WATCHER_CLEAN',       True))
-	do_git        :bool = bool(os.getenv('WATCHER_GIT',         True))
-	do_setup      :bool = bool(os.getenv('WATCHER_SETUP',       True))
-	do_pyinstaller:bool = bool(os.getenv('WATCHER_PYINSTALLER', True))
-	do_docker     :bool = bool(os.getenv('WATCHER_DOCKER',      True))
-	do_spydir     :bool = bool(os.getenv('WATCHER_SPYDIR',      True))
+		_event_handler(
+			do_clean      =do_clean,
+			do_git        =do_git,
+			do_setup      =do_setup,
+			do_pyinstaller=do_pyinstaller,
+			do_docker     =do_docker,
+			do_spydir     =do_spydir, )
 
 	observer     :Observer     = Observer()
 	event_handler:EventHandler = EventHandler(
