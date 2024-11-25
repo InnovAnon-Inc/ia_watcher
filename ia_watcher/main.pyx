@@ -10,6 +10,7 @@ import importlib
 import os
 from pathlib             import Path
 import subprocess
+import sys
 from typing              import Callable, List
 
 import dotenv
@@ -103,7 +104,6 @@ def observe(observer:Observer,)->None:
 	observer.stop()
 	observer.join()
 
-import sys
 def reexec()->None:
 	os.execle(sys.argv[0], sys.argv, os.environ,)
 
@@ -119,6 +119,8 @@ def main()->None:
 	else:
 		logger.info('first run')
 		_event_handler()
+
+	
 
 	observer     :Observer     = Observer()
 	event_handler:EventHandler = EventHandler(
