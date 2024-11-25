@@ -121,7 +121,9 @@ def main()->None:
 		_event_handler()
 
 	observer     :Observer     = Observer()
-	event_handler:EventHandler = EventHandler(observer=observer,)
+	event_handler:EventHandler = EventHandler(
+		observer=observer,
+	)
 	observer.schedule(event_handler, path, recursive=True,)
 	with observe(observer=observer,) as _:
 		loop(observer=observer,)
