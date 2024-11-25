@@ -4,6 +4,7 @@ ia_git
 ia_pyinstaller
 ia_setup
 ia_spydir
+python-dotenv
 #rich
 structlog
 watchdog

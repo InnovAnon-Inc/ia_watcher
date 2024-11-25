@@ -12,6 +12,7 @@ from pathlib             import Path
 import subprocess
 from typing              import Callable, List
 
+import dotenv
 from structlog           import get_logger
 #from watchdog.events     import FileSystemEventHandler
 from watchdog.events     import PatternMatchingEventHandler
@@ -21,6 +22,7 @@ from watchdog.events     import FileOpenedEvent
 from watchdog.observers  import Observer
 
 from ia_clean.main       import main as clean_main
+from ia_docker.main      import main as docker_main
 from ia_git.main         import main as git_main
 from ia_pyinstaller.main import main as pyinstaller_main
 from ia_setup.main       import main as setup_main
@@ -107,6 +109,8 @@ def reexec()->None:
 
 #@pidfile()
 def main()->None:
+	dotenv.load_dotenv()
+
 	path         :Path         = Path()
 	logger.info('watching: %s', path.resolve(),)
 
