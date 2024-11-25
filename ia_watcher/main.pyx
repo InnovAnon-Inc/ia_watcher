@@ -119,7 +119,13 @@ def main()->None:
 	do_spydir     :bool         = bool(os.getenv('WATCHER_SPYDIR',      True))
 	path          :Path         = Path()
 
-	logger.info('watching: %s', path.resolve(),)
+	logger.info('clean      : %s', do_clean,)
+	logger.info('git        : %s', do_git,)
+	logger.info('setup      : %s', do_setup,)
+	logger.info('pyinstaller: %s', do_pyinstaller,)
+	logger.info('docker     : %s', do_docker,)
+	logger.info('spydir     : %s', do_spydir,)
+	logger.info('watching   : %s', path.resolve(),)
 
 	if bool(os.getenv('WATCHER_INIT', None)):
 		logger.info('re-run')
