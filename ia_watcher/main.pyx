@@ -88,12 +88,12 @@ class EventHandler(PatternMatchingEventHandler):
 		event_handler(
 			observer      =self.observer,
 			src_path      =src_path,
-			do_clean      =do_clean,
-			do_git        =do_git,
-			do_setup      =do_setup,
-			do_pyinstaller=do_pyinstaller,
-			do_docker     =do_docker,
-			do_spydir     =do_spydir, )
+			do_clean      =self.do_clean,
+			do_git        =self.do_git,
+			do_setup      =self.do_setup,
+			do_pyinstaller=self.do_pyinstaller,
+			do_docker     =self.do_docker,
+			do_spydir     =self.do_spydir, )
 
 def event_handler(
 	observer      :Observer,
@@ -113,7 +113,8 @@ def event_handler(
 		do_docker     =do_docker,
 		do_spydir     =do_spydir, )
 
-	deps        :List[str] = ['ia_clean', 'ia_git', 'ia_pyinstaller', 'ia_setup', 'ia_watcher',]
+	deps        :List[str] = ['ia_clean', 'ia_docker', 'ia_git', 'ia_pyinstaller', 'ia_setup', 'ia_spydir', 'ia_watcher',]
+	# FIXME src_path
 	do_bootstrap:bool      = (src_path.resolve() in deps)
 	logger.info('bootstrap required: %s', do_bootstrap,)
 	if (not do_bootstrap):
