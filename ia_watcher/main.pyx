@@ -33,7 +33,16 @@ logger = get_logger()
 
 class EventHandler(PatternMatchingEventHandler):
 
-	def __init__(self:'EventHandler', observer:Observer,)->None:
+	def __init__(
+		self          :'EventHandler',
+		observer      :Observer,
+		do_clean      :bool,
+		do_git        :bool,
+		do_setup      :bool,
+		do_pyinstaller:bool,
+		do_docker     :bool,
+		do_spydir     :bool,
+	)->None:
 		super().__init__(
 			ignore_directories=True,
 			ignore_patterns=[
@@ -92,11 +101,18 @@ def _event_handler(
 )->None:
 	logger.info('before update')
 
-	clean_main()
-	git_main()
-	setup_main()
-	#pyinstaller_main()
-	spydir_main()
+	if do_clean:
+		clean_main()
+	if do_git:
+		git_main()
+	if do_setup:
+		setup_main()
+	if do_pyinstaller:
+		pyinstaller_main()
+	if do_docker:
+		docker_main()
+	if do_spydir:
+		spydir_main()
 
 	logger.info('after update')
 
