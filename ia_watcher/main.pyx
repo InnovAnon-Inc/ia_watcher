@@ -85,10 +85,19 @@ class EventHandler(PatternMatchingEventHandler):
 			return
 
 		logger.info('handling event: %s (%s)', src_path, event,)
-		event_handler(observer=self.observer, src_path=src_path,)
+		event_handler(
+			observer=self.observer,
+			src_path=src_path,
+		)
 
 def event_handler(observer:Observer, src_path:Path,)->None:
-	_event_handler()
+	_event_handler(
+		do_clean      =do_clean,
+		do_git        =do_git,
+		do_setup      =do_setup,
+		do_pyinstaller=do_pyinstaller,
+		do_docker     =do_docker,
+		do_spydir     =do_spydir, )
 
 	deps:List[str] = ['ia_clean', 'ia_git', 'ia_pyinstaller', 'ia_setup', 'ia_watcher',]
 	if (src_path.resolve().name not in deps):
