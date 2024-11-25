@@ -1,4 +1,5 @@
 ia_clean
+ia_docker
 ia_git
 ia_pyinstaller
 ia_setup
