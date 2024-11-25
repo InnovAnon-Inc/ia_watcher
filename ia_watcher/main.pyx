@@ -120,7 +120,12 @@ def main()->None:
 		logger.info('first run')
 		_event_handler()
 
-	
+	do_clean      :bool = bool(os.getenv('WATCHER_CLEAN',       True))
+	do_git        :bool = bool(os.getenv('WATCHER_GIT',         True))
+	do_setup      :bool = bool(os.getenv('WATCHER_SETUP',       True))
+	do_pyinstaller:bool = bool(os.getenv('WATCHER_PYINSTALLER', True))
+	do_docker     :bool = bool(os.getenv('WATCHER_DOCKER',      True))
+	do_spydir     :bool = bool(os.getenv('WATCHER_SPYDIR',      True))
 
 	observer     :Observer     = Observer()
 	event_handler:EventHandler = EventHandler(
