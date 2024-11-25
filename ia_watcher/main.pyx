@@ -111,6 +111,7 @@ def reexec()->None:
 def main()->None:
 	dotenv.load_dotenv()
 
+	do_init       :bool         = bool(os.getenv('WATCHER_INIT',        None))
 	do_clean      :bool         = bool(os.getenv('WATCHER_CLEAN',       True))
 	do_git        :bool         = bool(os.getenv('WATCHER_GIT',         True))
 	do_setup      :bool         = bool(os.getenv('WATCHER_SETUP',       True))
@@ -127,7 +128,7 @@ def main()->None:
 	logger.info('spydir     : %s', do_spydir,)
 	logger.info('watching   : %s', path.resolve(),)
 
-	if bool(os.getenv('WATCHER_INIT', None)):
+	if do_init:
 		logger.info('re-run')
 	else:
 		logger.info('first run')
