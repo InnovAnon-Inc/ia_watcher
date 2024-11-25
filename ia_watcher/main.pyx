@@ -82,7 +82,14 @@ def event_handler(observer:Observer, src_path:Path,)->None:
 	logger.info('bootstrap required')
 	observer.stop()
 
-def _event_handler()->None:
+def _event_handler(
+	do_clean      :bool,
+	do_git        :bool,
+	do_setup      :bool,
+	do_pyinstaller:bool,
+	do_docker     :bool,
+	do_spydir     :bool,
+)->None:
 	logger.info('before update')
 
 	clean_main()
