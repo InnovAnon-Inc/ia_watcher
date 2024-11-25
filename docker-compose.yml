@@ -1,10 +1,10 @@
 services:
-  ia_setup:
-    hostname:         ia_setup.innovanon.com
+  ia_watcher:
+    hostname:         ia_watcher.innovanon.com
     build:
       context:        .
       tags:
-        - ia_setup:latest
+        - ia_watcher:latest
     restart:          no
     logging:
       driver:         syslog   
