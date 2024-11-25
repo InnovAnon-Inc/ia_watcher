@@ -56,7 +56,13 @@ class EventHandler(PatternMatchingEventHandler):
 				'*.egg-info/**',
 			],
 		)
-		self.observer = observer
+		self.observer       = observer
+		self.do_clean       = do_clean
+		self.do_git         = do_git
+		self.do_setup       = do_setup
+		self.do_pyinstaller = do_pyinstaller
+		self.do_docker      = do_docker
+		self.do_spydir      = do_spydir
 
 	def on_any_event(self:'EventHandler', event:FileSystemEvent)->None:
 		src_path:Path = Path(event.src_path)
