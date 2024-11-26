@@ -112,6 +112,7 @@ def event_handler(
 		do_pyinstaller=do_pyinstaller,
 		do_docker     =do_docker,
 		do_spydir     =do_spydir, )
+	logger.debug('src path: %s', src_path.resolve(),)
 
 	deps        :List[str] = ['ia_clean', 'ia_docker', 'ia_git', 'ia_pyinstaller', 'ia_setup', 'ia_spydir', 'ia_watcher',]
 	# FIXME src_path

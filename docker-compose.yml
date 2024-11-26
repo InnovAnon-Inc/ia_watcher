@@ -8,6 +8,7 @@ services:
         -           ia_watcher:latest
         - innovanon/ia_watcher
         -           ia_watcher
+    image:            innovanon/ia_watcher
     restart:          no
     logging:
       driver:         syslog   
