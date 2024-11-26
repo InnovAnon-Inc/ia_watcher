@@ -1,15 +1,9 @@
-#FROM innovanon/ia_clean       AS clean
-#FROM innovanon/ia_docker      AS docker
-#FROM innovanon/ia_git         AS git
-#FROM innovanon/ia_pyinstaller AS pyinstaller
-#FROM innovanon/ia_spydir      AS spydir
-#FROM innovanon/ia_setup       AS setup
-FROM ia_clean       AS clean
-FROM ia_docker      AS docker
-FROM ia_git         AS git
-FROM ia_pyinstaller AS pyinstaller
-FROM ia_spydir      AS spydir
-FROM ia_setup       AS setup
+FROM innovanon/ia_clean       AS clean
+FROM innovanon/ia_docker      AS docker
+FROM innovanon/ia_git         AS git
+FROM innovanon/ia_pyinstaller AS pyinstaller
+FROM innovanon/ia_spydir      AS spydir
+FROM innovanon/ia_setup       AS setup
 
 COPY --from=clean       /tmp/py/ /tmp/py/
 RUN pip install --no-cache-dir --upgrade -r requirements.txt

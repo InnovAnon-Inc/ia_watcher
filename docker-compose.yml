@@ -5,9 +5,9 @@ services:
       context:        .
       tags:
         - innovanon/ia_watcher:latest
-        -           ia_watcher:latest
-        - innovanon/ia_watcher
-        -           ia_watcher
+    #    -           ia_watcher:latest
+    #    - innovanon/ia_watcher
+    #    -           ia_watcher
     image:            innovanon/ia_watcher
     restart:          no
     logging:
