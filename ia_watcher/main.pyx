@@ -133,18 +133,25 @@ def _event_handler(
 	logger.info('before update')
 
 	if do_clean: # clean #1
+		logger.info('clean')
 		clean_main()
 	if do_git:
+		logger.info('git')
 		git_main()
 	if do_setup:
+		logger.info('setup')
 		setup_main()
 	if do_pyinstaller:
+		logger.info('pyinstaller')
 		pyinstaller_main()
 	if do_clean: # clean #2
+		logger.info('clean')
 		clean_main()
 	if do_docker:
+		logger.info('docker')
 		docker_main()
 	if do_spydir:
+		logger.info('spydir')
 		spydir_main()
 
 	logger.info('after update')
@@ -175,6 +182,13 @@ def main()->None:
 	do_docker     :bool         = bool(os.getenv('WATCHER_DOCKER',      True))
 	do_spydir     :bool         = bool(os.getenv('WATCHER_SPYDIR',      True))
 	path          :Path         = Path()
+
+	logger.debug('WATCHER_CLEAN      : %s', os.getenv('WATCHER_CLEAN'),)
+	logger.debug('WATCHER_GIT        : %s', os.getenv('WATCHER_GIT'),)
+	logger.debug('WATCHER_SETUP      : %s', os.getenv('WATCHER_SETUP'),)
+	logger.debug('WATCHER_PYINSTALLER: %s', os.getenv('WATCHER_PYINSTALLER'),)
+	logger.debug('WATCHER_DOCKER     : %s', os.getenv('WATCHER_DOCKER'),)
+	logger.debug('WATCHER_SPYDIR     : %s', os.getenv('WATCHER_SPYDIR'),)
 
 	logger.info('clean      : %s', do_clean,)
 	logger.info('git        : %s', do_git,)
