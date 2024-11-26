@@ -132,7 +132,7 @@ def _event_handler(
 )->None:
 	logger.info('before update')
 
-	if do_clean:
+	if do_clean: # clean #1
 		clean_main()
 	if do_git:
 		git_main()
@@ -140,6 +140,8 @@ def _event_handler(
 		setup_main()
 	if do_pyinstaller:
 		pyinstaller_main()
+	if do_clean: # clean #2
+		clean_main()
 	if do_docker:
 		docker_main()
 	if do_spydir:
