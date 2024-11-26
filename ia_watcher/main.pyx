@@ -172,35 +172,58 @@ def reexec()->None:
 
 #@pidfile()
 def main()->None:
-	dotenv.load_dotenv()
-
-	do_init       :bool         = bool(os.getenv('WATCHER_INIT',        None))
-	do_clean      :bool         = bool(os.getenv('WATCHER_CLEAN',       True))
-	do_git        :bool         = bool(os.getenv('WATCHER_GIT',         True))
-	do_setup      :bool         = bool(os.getenv('WATCHER_SETUP',       True))
-	do_pyinstaller:bool         = bool(os.getenv('WATCHER_PYINSTALLER', True))
-	do_docker     :bool         = bool(os.getenv('WATCHER_DOCKER',      True))
-	do_spydir     :bool         = bool(os.getenv('WATCHER_SPYDIR',      True))
 	path          :Path         = Path()
 
-	logger.debug('WATCHER_CLEAN      : %s', os.getenv('WATCHER_CLEAN'),)
-	logger.debug('WATCHER_GIT        : %s', os.getenv('WATCHER_GIT'),)
-	logger.debug('WATCHER_SETUP      : %s', os.getenv('WATCHER_SETUP'),)
-	logger.debug('WATCHER_PYINSTALLER: %s', os.getenv('WATCHER_PYINSTALLER'),)
-	logger.debug('WATCHER_DOCKER     : %s', os.getenv('WATCHER_DOCKER'),)
-	logger.debug('WATCHER_SPYDIR     : %s', os.getenv('WATCHER_SPYDIR'),)
+	env_file      :Path         = path / '.env'
+	logger.debug('env file: %s', env_file,)
+	assert env_file.is_file(), env_file.resolve()
+	#with env_file.open('r',) as f:
+	#	logger.debug('env file: %s', f.read(),)
 
-	logger.info('clean      : %s', do_clean,)
-	logger.info('git        : %s', do_git,)
-	logger.info('setup      : %s', do_setup,)
-	logger.info('pyinstaller: %s', do_pyinstaller,)
-	logger.info('docker     : %s', do_docker,)
-	logger.info('spydir     : %s', do_spydir,)
-	logger.info('watching   : %s', path.resolve(),)
+	ign_file      :Path         = path / '.gitignore'
+	logger.debug('ign file: %s', ign_file,)
+	assert ign_file.is_file(), ign_file.resolve()
+	#with ign_file.open('r',) as f:
+	#	logger.debug('ign file: %s', f.read(),)
 
-	if do_init:
+	dotenv.load_dotenv(env_file,)
+
+	#logger.debug('WATCHER_CLEAN      : %s', os.getenv('WATCHER_CLEAN'),)
+	#logger.debug('WATCHER_GIT        : %s', os.getenv('WATCHER_GIT'),)
+	#logger.debug('WATCHER_SETUP      : %s', os.getenv('WATCHER_SETUP'),)
+	#logger.debug('WATCHER_PYINSTALLER: %s', os.getenv('WATCHER_PYINSTALLER'),)
+	#logger.debug('WATCHER_DOCKER     : %s', os.getenv('WATCHER_DOCKER'),)
+	#logger.debug('WATCHER_SPYDIR     : %s', os.getenv('WATCHER_SPYDIR'),)
+	#
+	#logger.debug('WATCHER_CLEAN      : %s', os.getenv('WATCHER_CLEAN',       'True',),)
+	#logger.debug('WATCHER_GIT        : %s', os.getenv('WATCHER_GIT',         'True',),)
+	#logger.debug('WATCHER_SETUP      : %s', os.getenv('WATCHER_SETUP',       'True',),)
+	#logger.debug('WATCHER_PYINSTALLER: %s', os.getenv('WATCHER_PYINSTALLER', 'True',),)
+	#logger.debug('WATCHER_DOCKER     : %s', os.getenv('WATCHER_DOCKER',      'True',),)
+	#logger.debug('WATCHER_SPYDIR     : %s', os.getenv('WATCHER_SPYDIR',      'True',),)
+	#
+	#logger.debug('False == %s', bool(''),)
+
+	do_init       :bool         = bool(os.getenv('WATCHER_INIT',        None)) # False
+	do_clean      :bool         = bool(os.getenv('WATCHER_CLEAN',       'True'))
+	do_git        :bool         = bool(os.getenv('WATCHER_GIT',         'True'))
+	do_setup      :bool         = bool(os.getenv('WATCHER_SETUP',       'True'))
+	do_pyinstaller:bool         = bool(os.getenv('WATCHER_PYINSTALLER', 'True'))
+	do_docker     :bool         = bool(os.getenv('WATCHER_DOCKER',      'True'))
+	do_spydir     :bool         = bool(os.getenv('WATCHER_SPYDIR',      'True'))
+
+	logger.info('init               : %s', do_init,)
+	logger.info('clean              : %s', do_clean,)
+	logger.info('git                : %s', do_git,)
+	logger.info('setup              : %s', do_setup,)
+	logger.info('pyinstaller        : %s', do_pyinstaller,)
+	logger.info('docker             : %s', do_docker,)
+	logger.info('spydir             : %s', do_spydir,)
+	logger.info('watching           : %s', path.resolve(),)
+
+	if do_init:                                                                # do_init means don't do it
 		logger.info('re-run')
-	else:
+	else:                                                                      # do init when (not do_init)
 		logger.info('first run')
 		_event_handler(
 			do_clean      =do_clean,
