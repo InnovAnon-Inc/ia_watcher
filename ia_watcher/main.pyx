@@ -169,8 +169,7 @@ def observe(observer:Observer,)->None:
 	observer.join()
 
 def reexec()->None:
-	# TODO
-	os.execle(sys.argv[0], sys.argv, os.environ,)
+	os.execve(sys.argv[0], sys.argv, os.environ,)
 
 #@pidfile()
 def main()->None:
